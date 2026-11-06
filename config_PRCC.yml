@@ -1,0 +1,90 @@
+AUG:
+  RC_PROB: 0.5
+  RE_PROB: 0.5
+  RF_PROB: 0.5
+DATA:
+  AUX_INFO: False
+  BATCH_SIZE: 16
+  DATASET: prcc
+  IMG_HEIGHT: 224
+  IMG_WIDTH: 224
+  NOBIO_INDEX:
+  - 2
+  - 3
+  NUM_INSTANCES: 4
+  NUM_WORKERS: 1
+  PIN_MEMORY: False
+  PIXEL_MEAN:
+  - 0.485
+  - 0.456
+  - 0.406
+  PIXEL_STD:
+  - 0.229
+  - 0.224
+  - 0.225
+  SAMPLER: softmax_triplet
+  SUMMERY_TEXT: True
+  TEST_BATCH: 128
+  TEXT_MODEL: EVA02-CLIP
+  TEXT_MODEL_VERSION: EVA02-CLIP-L-14
+  CAPTION_DIR: "/home/aac/chiranjeev/PRCC_Differ/TextCaptionDirectory/prcc"  ##chiranjeev
+  ROOT: "/home/aac/chiranjeev/PRCC_Differ/DIFFER/data" ##chiranjeev
+
+MODEL:
+  CLIP_DIM: 768
+  CLIP_LOSS_TYPE: constant
+  COS_LAYER: False
+  # DEVICE: cuda  ##chiranjeev
+  # DEVICE_ID: '0'  ##chiranjeev
+  DIST_TRAIN: False #True #true
+  ID_LOSS_TYPE: softmax
+  ID_LOSS_WEIGHT: 1.0
+  IF_LABELSMOOTH: 'off'
+  IF_WITH_CENTER: 'no'
+  LAST_LAYER: clipFc
+  LOSS_TYPE:
+  - ce
+  - triplet
+  # - clipBio ##chiranjeev - off it
+  # - clipBioReverse ##chiranjeev - off it
+  NAME: eva02_l_bio
+  NONBIO_HEAD: False
+  NO_MARGIN: True
+  TRIPLET_LOSS_WEIGHT: 1.0
+  TYPE: eva02_cloth
+
+
+SOLVER:
+  BASE_LR: 2.0e-06
+  QWEN_LR: 1e-4  ##chiranjeev
+  BIAS_LR_FACTOR: 2
+  CENTER_LOSS_WEIGHT: 0.0005
+  CENTER_LR: 0.5
+  CHECKPOINT_PERIOD: 60
+  COSINE_MARGIN: 0.5
+  COSINE_SCALE: 30
+  EVAL_PERIOD: 1
+  FREEZE_EPOCH: 0
+  GAMMA: 0.1
+  LARGE_FC_LR: False ##false
+  LOG_PERIOD: 50
+  MARGIN: 0.3
+  MAX_EPOCHS: 60
+  MOMENTUM: 0.9
+  OPTIMIZER_NAME: SGD #AdamW
+  SEED: 1234
+  STEPS:
+  - 40
+  - 60
+  WARMUP_EPOCHS: 20
+  WARMUP_FACTOR: 0.01
+  WARMUP_LR: 7.8125e-07
+  WARMUP_METHOD: linear
+  WEIGHT_DECAY: 0.0005 #0.05
+  WEIGHT_DECAY_BIAS: 0.0005 #0.05
+TEST:
+  FEAT_NORM: 'yes'
+  TYPE: image_only
+  WEIGHT: ''
+TRAIN:
+  START_EPOCH: 1
