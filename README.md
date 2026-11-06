@@ -1,1 +1,3 @@
-# Bio-JEPA
+# Bio-JEPA: Disentangling Biometric and Non-Biometric Semantics for Cloth-Changing Person Re-Identification
+
+## Trained Model Weights will be released soon ...
